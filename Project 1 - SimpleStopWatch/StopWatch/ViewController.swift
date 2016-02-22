@@ -9,46 +9,48 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    var Counter:Double  = 0
-    var Timer: NSTimer  = NSTimer()
-    var IsPlaying: Bool = false
+    
+    var count = 0.0
+    var isPlay = false
+    var Timer = NSTimer()
+    
+    @IBOutlet weak var timeText: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        timeText.text = String(count)
+    }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
     
-    override func viewDidLoad() {
-        timeLabel.text = String(Counter)
-        super.viewDidLoad()
-    }
-    
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBAction func resetButtonDidTouch(sender: AnyObject) {
+
+    @IBAction func resetButton(sender: UIButton) {
+        count = 0.0
         Timer.invalidate()
-        IsPlaying = false
-        Counter = 0
-        timeLabel.text = String(Counter)
+        isPlay = false
+        timeText.text = String(count)
     }
     
-    @IBAction func playButtonDidTouch(sender: AnyObject) {
-        if(IsPlaying) {
+    @IBAction func StartButton(sender: UIButton) {
+        if isPlay{
             return
         }
-        Timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("UpdateTimer"), userInfo: nil, repeats: true)
-        IsPlaying = true
+        isPlay = true
+        Timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTime"), userInfo: nil, repeats: true)
     }
     
-    @IBAction func pauseButtonDidTouch(sender: AnyObject) {
+    @IBAction func PauseButton(sender: UIButton) {
+        isPlay = false
         Timer.invalidate()
-        IsPlaying = false
     }
     
-    func UpdateTimer() {
-        Counter = Counter + 0.1
-        timeLabel.text = String(format: "%.1f", Counter)
+    
+    func updateTime(){
+        count = count+0.1
+        print(count)
+        timeText.text = String(format: "%.1f",count);
     }
-
-
 }
 

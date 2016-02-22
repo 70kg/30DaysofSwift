@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        //这个可以绑定xib和viewcontroller
         let v1 : View1 = View1(nibName: "View1", bundle: nil)
         let v2 : View2 = View2(nibName: "View2", bundle: nil)
         let v3 : View3 = View3(nibName: "View3", bundle: nil)

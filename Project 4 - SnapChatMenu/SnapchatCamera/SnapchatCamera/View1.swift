@@ -22,6 +22,9 @@ class View1: UIViewController {
     }
     
 
+    @IBAction func buttonClick(sender: AnyObject) {
+        print("点击了按钮")
+    }
     /*
     // MARK: - Navigation
 
